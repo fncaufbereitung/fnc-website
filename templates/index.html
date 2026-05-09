@@ -3,157 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FNC Autoaufbereitung</title>
+    <title>FNC Autoaufbereitung | Premium Fahrzeugpflege</title>
 
     <style>
         *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
         html{scroll-behavior:smooth;}
-        body{background:#0d0d0d;color:white;}
+        body{background:#070707;color:white;}
 
         nav{
-            position:fixed;
-            top:0;
-            width:100%;
-            background:rgba(0,0,0,0.85);
+            position:fixed;top:0;width:100%;z-index:1000;
             padding:18px 8%;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            z-index:1000;
+            display:flex;justify-content:space-between;align-items:center;
+            background:rgba(0,0,0,.78);backdrop-filter:blur(12px);
+            border-bottom:1px solid rgba(255,255,255,.08);
         }
-
-        nav h2{color:#fff;}
-        nav a{
-            color:white;
-            text-decoration:none;
-            margin-left:25px;
-            font-weight:bold;
-        }
+        nav h2{letter-spacing:1px;}
+        nav span{color:#e00000;}
+        nav a{color:white;text-decoration:none;margin-left:24px;font-weight:bold;font-size:15px;}
+        nav a:hover{color:#ff2222;}
 
         .hero{
-            height:100vh;
+            min-height:100vh;
             background:
-            linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.9)),
+            linear-gradient(90deg,rgba(0,0,0,.92),rgba(0,0,0,.55),rgba(0,0,0,.9)),
             url('/static/logo.jpeg');
-            background-size:cover;
-            background-position:center;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            text-align:center;
-            padding:20px;
+            background-size:cover;background-position:center;
+            display:flex;align-items:center;padding:120px 8% 70px;
         }
-
-        .hero h1{
-            font-size:65px;
-            margin-bottom:20px;
+        .hero-content{max-width:780px;}
+        .badge{
+            display:inline-block;padding:9px 16px;border:1px solid #e00000;
+            border-radius:50px;color:#ff3333;margin-bottom:22px;font-weight:bold;
         }
-
-        .hero p{
-            font-size:24px;
-            color:#ddd;
-            margin-bottom:35px;
-        }
+        .hero h1{font-size:68px;line-height:1.05;margin-bottom:22px;}
+        .hero p{font-size:24px;color:#ddd;margin-bottom:34px;line-height:1.5;}
 
         .btn{
-            display:inline-block;
-            padding:16px 35px;
-            background:#e00000;
-            color:white;
-            text-decoration:none;
-            border-radius:12px;
-            font-size:20px;
-            font-weight:bold;
+            display:inline-block;padding:16px 34px;background:#e00000;color:white;
+            text-decoration:none;border-radius:14px;font-size:19px;font-weight:bold;
+            box-shadow:0 0 25px rgba(224,0,0,.35);
         }
+        .btn.secondary{background:transparent;border:1px solid white;margin-left:12px;box-shadow:none;}
 
-        .section{
-            padding:80px 8%;
-        }
-
-        .section h2{
-            text-align:center;
-            font-size:42px;
-            margin-bottom:45px;
-        }
+        .section{padding:85px 8%;}
+        .section h2{text-align:center;font-size:44px;margin-bottom:15px;}
+        .subtitle{text-align:center;color:#aaa;font-size:19px;margin-bottom:45px;}
 
         .services{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:25px;
+            display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;
         }
-
         .box{
-            background:#1a1a1a;
-            padding:30px;
-            border-radius:18px;
-            text-align:center;
-            border:1px solid #333;
+            background:linear-gradient(180deg,#181818,#0f0f0f);
+            padding:32px;border-radius:22px;border:1px solid rgba(255,255,255,.09);
+            transition:.3s;
         }
+        .box:hover{transform:translateY(-7px);border-color:#e00000;}
+        .box h3{font-size:24px;margin-bottom:15px;}
+        .box p{color:#bbb;line-height:1.6;}
+        .price{color:#ff3333;font-size:26px;font-weight:bold;margin-top:20px;}
 
-        .box h3{
-            margin-bottom:15px;
-            color:#fff;
-            font-size:24px;
+        .before-after{
+            display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:25px;
         }
-
-        .price{
-            margin-top:15px;
-            color:#ff3333;
-            font-size:24px;
-            font-weight:bold;
+        .before-after img{
+            width:100%;border-radius:22px;border:1px solid #333;
         }
 
         .gallery{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-            gap:22px;
+            display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;
         }
-
         .gallery img{
-            width:100%;
-            height:260px;
-            object-fit:cover;
-            border-radius:18px;
-            border:1px solid #333;
+            width:100%;height:260px;object-fit:cover;border-radius:22px;
+            border:1px solid rgba(255,255,255,.1);transition:.3s;
         }
+        .gallery img:hover{transform:scale(1.035);}
+
+        .why{
+            display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;
+        }
+        .why div{
+            background:#141414;padding:26px;border-radius:20px;text-align:center;
+            border:1px solid rgba(255,255,255,.08);
+        }
+        .why h3{color:#ff3333;margin-bottom:10px;}
 
         .contact{
-            text-align:center;
-            background:#151515;
-            border-radius:20px;
-            padding:50px;
+            background:linear-gradient(135deg,#151515,#050505);
+            border-radius:26px;text-align:center;padding:55px 25px;
+            border:1px solid rgba(255,255,255,.08);
         }
+        .contact p{font-size:22px;color:#ddd;margin-bottom:28px;}
 
-        .contact p{
-            font-size:22px;
-            margin-bottom:25px;
-        }
+        footer{background:#000;text-align:center;padding:35px;color:#999;}
 
-        footer{
-            background:#000;
-            text-align:center;
-            padding:30px;
-            color:#aaa;
-        }
-
-        @media(max-width:700px){
-            nav{
-                flex-direction:column;
-                gap:12px;
-            }
-
-            nav a{
-                margin:0 8px;
-                font-size:14px;
-            }
-
-            .hero h1{
-                font-size:42px;
-            }
-
-            .hero p{
-                font-size:19px;
-            }
+        @media(max-width:760px){
+            nav{flex-direction:column;gap:12px;}
+            nav a{margin:0 8px;font-size:14px;}
+            .hero h1{font-size:42px;}
+            .hero p{font-size:19px;}
+            .btn.secondary{margin-left:0;margin-top:12px;}
         }
     </style>
 </head>
@@ -161,56 +109,93 @@
 <body>
 
 <nav>
-    <h2>FNC Autoaufbereitung</h2>
+    <h2>FNC <span>Autoaufbereitung</span></h2>
     <div>
         <a href="#leistungen">Leistungen</a>
+        <a href="#before">Vorher/Nachher</a>
         <a href="#galerie">Galerie</a>
         <a href="#kontakt">Kontakt</a>
     </div>
 </nav>
 
 <section class="hero">
-    <div>
-        <h1>FNC Autoaufbereitung</h1>
-        <p>Professionelle Fahrzeugaufbereitung mit Premium Ergebnis</p>
-        <a class="btn" href="https://wa.me/491731703608" target="_blank">
-            Jetzt per WhatsApp anfragen
-        </a>
+    <div class="hero-content">
+        <div class="badge">Premium Fahrzeugpflege</div>
+        <h1>Professionelle Autoaufbereitung mit Spiegelglanz</h1>
+        <p>Innenreinigung, Politur, Lackaufbereitung und Fahrzeugpflege mit Liebe zum Detail.</p>
+        <a class="btn" href="https://wa.me/491731703608" target="_blank">WhatsApp Anfrage</a>
+        <a class="btn secondary" href="#galerie">Galerie ansehen</a>
     </div>
 </section>
 
 <section class="section" id="leistungen">
     <h2>Unsere Leistungen</h2>
+    <p class="subtitle">Sauberkeit, Glanz und Werterhalt für Ihr Fahrzeug.</p>
 
     <div class="services">
         <div class="box">
             <h3>Komplettaufbereitung</h3>
-            <p>Innen- und Außenreinigung, Lackpflege, Felgen und Details.</p>
+            <p>Innen- und Außenreinigung, Felgen, Scheiben, Kunststoffpflege und Finish.</p>
             <div class="price">ab 149 €</div>
         </div>
 
         <div class="box">
-            <h3>Politur</h3>
-            <p>Mehr Glanz, weniger Kratzer und ein starker Spiegel-Effekt.</p>
+            <h3>Lackpolitur</h3>
+            <p>Mehr Tiefe, mehr Glanz und Entfernung leichter Kratzer im Lack.</p>
             <div class="price">auf Anfrage</div>
         </div>
 
         <div class="box">
             <h3>Innenreinigung</h3>
-            <p>Gründliche Reinigung von Sitzen, Kunststoff, Teppich und Scheiben.</p>
+            <p>Gründliche Reinigung von Teppich, Sitzen, Cockpit, Türfalzen und Details.</p>
             <div class="price">auf Anfrage</div>
         </div>
 
         <div class="box">
             <h3>Außenwäsche</h3>
-            <p>Schonende Handwäsche, Felgenreinigung und Reifenpflege.</p>
+            <p>Schonende Handwäsche, Felgenreinigung und Pflege von Reifen und Kunststoff.</p>
             <div class="price">auf Anfrage</div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="before">
+    <h2>Vorher / Nachher</h2>
+    <p class="subtitle">Echte Ergebnisse aus unserer Arbeit.</p>
+
+    <div class="before-after">
+        <img src="/static/car16.jpeg">
+        <img src="/static/car17.jpeg">
+    </div>
+</section>
+
+<section class="section">
+    <h2>Warum FNC?</h2>
+    <p class="subtitle">Qualität, die man sieht.</p>
+
+    <div class="why">
+        <div>
+            <h3>Premium Ergebnis</h3>
+            <p>Glanz und Sauberkeit bis ins Detail.</p>
+        </div>
+        <div>
+            <h3>Faire Preise</h3>
+            <p>Transparente Leistungen passend zum Fahrzeug.</p>
+        </div>
+        <div>
+            <h3>Sorgfalt</h3>
+            <p>Jedes Fahrzeug wird individuell behandelt.</p>
+        </div>
+        <div>
+            <h3>Direkter Kontakt</h3>
+            <p>Schnelle Anfrage direkt per WhatsApp.</p>
         </div>
     </div>
 </section>
 
 <section class="section" id="galerie">
     <h2>Galerie</h2>
+    <p class="subtitle">Ein Blick auf unsere Arbeit.</p>
 
     <div class="gallery">
         <img src="/static/car1.png">
@@ -228,18 +213,14 @@
         <img src="/static/car13.jpeg">
         <img src="/static/car14.jpeg">
         <img src="/static/car15.jpeg">
-        <img src="/static/car16.jpeg">
-        <img src="/static/car17.jpeg">
     </div>
 </section>
 
 <section class="section" id="kontakt">
     <div class="contact">
-        <h2>Kontakt</h2>
-        <p>Interesse an einer professionellen Fahrzeugaufbereitung?</p>
-        <a class="btn" href="https://wa.me/491731703608" target="_blank">
-            WhatsApp: 0173 1703608
-        </a>
+        <h2>Jetzt Termin anfragen</h2>
+        <p>Schreiben Sie uns direkt per WhatsApp und erhalten Sie ein individuelles Angebot.</p>
+        <a class="btn" href="https://wa.me/491731703608" target="_blank">WhatsApp: 0173 1703608</a>
     </div>
 </section>
 
